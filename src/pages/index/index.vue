@@ -5,7 +5,7 @@
 			<text class="title">{{title}}</text>
 		</view>
 		<view>
-			111
+			test
 		</view>
 	</view>
 </template>
