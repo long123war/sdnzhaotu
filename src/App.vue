@@ -14,4 +14,6 @@
 
 <style>
 	/*每个页面公共css */
+	@import "./static/styles/iconfont.wxss";
+	@import "./static/styles/base.wxss";
 </style>
