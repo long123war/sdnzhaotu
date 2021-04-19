@@ -1,0 +1,47 @@
+{
+	"folders": [
+		{
+			"name": "JavaScript学习",
+			"path": "..\\..\\..\\..\\..\\HTML学习\\JavaScript学习"
+		},
+		{
+			"name": "JS源码、课件、笔记、工具",
+			"path": "..\\..\\..\\..\\..\\HTML学习\\JS源码、课件、笔记、工具"
+		},
+		{
+			"name": "劳卡门户页",
+			"path": "..\\..\\..\\..\\..\\HTML学习\\劳卡门户页"
+		},
+		{
+			"name": "node_test",
+			"path": "..\\..\\..\\..\\..\\JS_workSpace\\node_test"
+		},
+		{
+			"name": "HTML_glMusic",
+			"path": "..\\..\\..\\..\\..\\HTML学习\\HTML_glMusic"
+		},
+		{
+			"name": "JS_workSpaceD",
+			"path": "..\\..\\..\\.."
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\尚硅谷 Javascript 视频教程全集"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\尚硅谷ES6代码"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\尚硅谷AJAX技术（2020最新版）"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\kujiale-userCheack"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\17-21 Vue.js项目实战开发"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "JS_workSpaceD",
+		"git.ignoreLimitWarning": true
+	}
+}
