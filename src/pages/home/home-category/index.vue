@@ -2,6 +2,14 @@
   <view>分类</view>
 </template>
 
-<script></script>
+<script>
+export default {
+  mounted() {
+    uni.setNavigationBarTitle({
+      title: "分类",
+    });
+  },
+};
+</script>
 
 <style lang="less"></style>

@@ -73,19 +73,7 @@ export default {
       }
     },
   },
-  onLoad() {
-    this.request({
-      url: "http://157.122.54.189:9088/image/v3/homepage/vertical",
-      data: { limit: 10, order: "hot", skip: 1 },
-    }).then((res) => console.log(res));
-    // wx.request({
-    //   url:
-    //     "http://157.122.54.189:9088/image/v3/homepage/vertical?limit=1&order=hot&skip=1", //仅为示例，并非真实接口地址。
-    //   success(res) {
-    //     console.log(res.data);
-    //   },
-    // });
-  },
+  onLoad() {},
 };
 </script>
 
