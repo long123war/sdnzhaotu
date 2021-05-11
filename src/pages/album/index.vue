@@ -30,13 +30,15 @@
     <view class="album-wallpaper">
       <view
         class="album-wallpaper-img"
-        v-for="item in wallpaper"
+        v-for="(item, index) in wallpaper"
         :key="item._id"
       >
-        <image
-          :src="item.thumb + item.rule.replace('$<Height>', 360)"
-          mode="widthFix"
-        />
+        <goDetail :list="wallpaper" :index="index">
+          <image
+            :src="item.thumb + item.rule.replace('$<Height>', 360)"
+            mode="aspectFill"
+          />
+        </goDetail>
       </view>
     </view>
     <!-- 图片墙结束 -->
@@ -44,10 +46,21 @@
 </template>
 
 <script>
+import goDetail from "@/component/goDetail.vue";
 export default {
+  components: {
+    goDetail,
+  },
   onLoad(options) {
     console.log(options);
+    // 保存用户点击过来的id，用这个id发送请求，显示图片详情页面
+    // this.id = "5d5f8e45e7bce75ae7fb8278";
     this.id = options.id;
+    this.getList();
+  },
+  onReachBottom() {
+    // 如果拉到底，触发
+    this.parms.skip += this.parms.limit;
     this.getList();
   },
   data() {
@@ -76,10 +89,23 @@ export default {
         url: `http://157.122.54.189:9088/image/v1/wallpaper/album/${this.id}/wallpaper`,
         data: this.parms,
       }).then((result) => {
-        console.log(this.id);
+        console.log("专辑页面图片id:" + this.id);
         console.log(result);
-        this.album = result.res.album;
-        this.wallpaper = result.res.wallpaper;
+        // 如果this.album对象为空，那么就把请求的数据保存下来
+        if (Object.keys(this.album).length === 0) {
+          this.album = result.res.album;
+          this.parms.first = 0;
+        }
+        // 如果为空表示没有更多的数据了
+        if (result.res.wallpaper.length === 0) {
+          uni.showToast({
+            title: "已经到底部了",
+            duration: 2000,
+            icon: "none",
+          });
+        } else {
+          this.wallpaper = result.res.wallpaper;
+        }
       });
     },
   },
@@ -153,6 +179,7 @@ export default {
     border: 3rpx #fff solid;
     width: 33.33%;
     image {
+      height: 160rpx;
     }
   }
 }
