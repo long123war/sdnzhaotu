@@ -173,13 +173,16 @@ export default {
         title: "下载中",
         icon: "none",
       });
+      // 下载远程文件到小程序内存中
       const filePath = await uni.downloadFile({
         url: this.imgDetail.img,
       });
+      const { tempFilePath } = filePath[1];
       console.log(filePath);
       // tempFilePath
+      // 将图片从内存中下载到本地
       const tempFile = await uni.saveImageToPhotosAlbum({
-        filePath: filePath[1].tempFilePath,
+        filePath: tempFilePath,
       });
       console.log(tempFile);
       await uni.showToast({
