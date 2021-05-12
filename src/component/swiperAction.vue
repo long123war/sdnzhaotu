@@ -32,16 +32,19 @@ export default {
       if (touchEndTime - this.touchStartTime > 2000) {
         return;
       }
-      // 如果x轴滑动距离大于10，则算是滑动
-      if (Math.abs(touchEndx - this.touchStartx) > 10) {
+      // 如果x轴滑动距离大于10，且y轴滑动距离小于10，则算是滑动,
+      if (
+        Math.abs(touchEndx - this.touchStartx) > 10 &&
+        Math.abs(touchEndy - this.touchStarty) < 10
+      ) {
         if (touchEndx - this.touchStartx > 0) {
           touchresult = "right";
         } else {
           touchresult = "left";
         }
+        // 把结果发送到父组件
+        this.$emit("SwiperAciton", { touchresult });
       }
-      // 把结果发送到父组件
-      this.$emit("SwiperAciton", { touchresult });
     },
   },
 };
