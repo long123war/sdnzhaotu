@@ -18,9 +18,9 @@
     </view>
     <!-- tab栏结束 -->
     <!-- 视频展示区开始 -->
-    <view class="show-video">
+    <scroll-view class="show-video" @scrolltolower="handleTolower" scroll-y>
       <showVideo :videowp="videowp"></showVideo>
-    </view>
+    </scroll-view>
     <!-- 视频展示区结束 -->
   </view>
 </template>
@@ -75,10 +75,12 @@ export default {
     };
   },
   methods: {
+    // 点击tab触发
     onClickItem(e) {
       console.log(e);
       if (this.current != e.currentIndex) {
         this.current = e.currentIndex;
+        // 如果tab烂选的是前4个，把对应索引的tab菜单跳过值重新设置为0，视频数据数组设置为0
         if (this.current < 4) {
           this.items[this.current].parms.skip = 0;
           this.videowp = [];
@@ -88,14 +90,31 @@ export default {
         return;
       }
     },
+    // 获取数据
     getList() {
       this.request({
         url: this.items[this.current].url,
         data: this.items[this.current].parms,
       }).then((result) => {
         console.log(result);
-        this.videowp = result.res.videowp;
+        // 保存请求回来的视频数据
+        if (result.res.videowp.length === 0) {
+          uni.showToast({
+            title: "没有数据了",
+            duration: 2000,
+            icon: "none",
+          });
+        } else {
+          this.videowp = [...this.videowp, ...result.res.videowp];
+        }
       });
+    },
+    // 触底触发
+    handleTolower() {
+      this.items[this.current].parms.skip += this.items[
+        this.current
+      ].parms.limit;
+      this.getList();
     },
   },
 };
@@ -118,6 +137,9 @@ export default {
         transform: translateY(-50%);
       }
     }
+  }
+  .show-video {
+    height: calc(100vh - 36px);
   }
 }
 </style>
