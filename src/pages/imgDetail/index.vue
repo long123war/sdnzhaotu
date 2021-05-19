@@ -169,9 +169,8 @@ export default {
       }
     },
     async downloadImg() {
-      uni.showToast({
+      await uni.showLoading({
         title: "下载中",
-        icon: "none",
       });
       // 下载远程文件到小程序内存中
       const filePath = await uni.downloadFile({
